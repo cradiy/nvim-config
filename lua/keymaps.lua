@@ -35,23 +35,32 @@ vim.keymap.set('v', '>', '>gv', opts)
 
 -- Nvim Tree
 vim.keymap.set('n', '<A-m>', ':NvimTreeToggle<CR>', opts)
+vim.keymap.set('n', '<A-e>', ':NvimTreeFocus<CR>', opts)
 vim.keymap.set('n', '<A-r>', ':NvimTreeRefresh<CR>', opts)
+
 -- vim.keymap.set('n', '<A-.>', ':NvimTreeFindFile<CR>', opts)
 
 -- local builtin = require('telescope')
-vim.keymap.set('n', '<leader>ff', ":Telescope find_files<CR>", opts)
+vim.keymap.set('n', '<leader>f', ":Telescope find_files<CR>", opts)
 -- vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 -- vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
--- vim.api.nvim_set_keymap('n', '<C-.>', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+
+-- LSP 
 vim.keymap.set("n", "<C-.>", function()
 	require("tiny-code-action").code_action()
 end, { noremap = true, silent = true })
--- Rust
--- vim.keymap.set('n', '<leader>a', ':RustLsp hover actions<CR>')
--- vim.keymap.set('n', '<leader>a', ':lua vim.lsp.buf.hover()<CR>')
--- vim.keymap.set('n', '<C-.>', ':RustLsp codeAction<CR>')
+map('n', '<leader>a', ':lua vim.lsp.buf.hover()<CR>', opts)
+map('n', 'rn', ':lua vim.lsp.buf.rename()<CR>', opts)
+map('n', '<leader>r', ':lua vim.lsp.buf.references()<CR>', opts)
+map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
+map('n', '<leader>j', '<cmd>Telescope jumplist<CR>', opts)
+-- map('n', '<leader>r', '<cmd>lua ShowReferencesInFloatingWindow()<CR>', { noremap = true, silent = true })
+
+
+
+map('n', '<leader>i', ':lua vim.lsp.buf.implementation()<CR>', opts)
 
 -- Move to previous/next
 map('n', '<C-;>', '<Cmd>BufferPrevious<CR>', opts)
@@ -96,3 +105,12 @@ map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
+map('n', '<S-Up>', '', opts)
+map('n', '<S-Down>', '', opts)
+
+
+
+
+-- 在 Neovim 中定义自定义窗口导航快捷键
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>w', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-q>', '<C-w>q', { noremap = true, silent = true })

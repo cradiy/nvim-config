@@ -119,31 +119,32 @@ require("lazy").setup({
             }
         end
     },
-    {'romgrk/barbar.nvim',
-      dependencies = {
-        'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-        'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-      },
-      init = function() vim.g.barbar_auto_setup = false end,
-      opts = {
-        -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-        -- animation = true,
-        -- insert_at_start = true,
-        -- …etc.
-      },
-      version = '^1.0.0', -- optional: only update when a new 1.x version is released
+    {
+        'romgrk/barbar.nvim',
+        dependencies = {
+            'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
+            'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+        },
+        init = function() vim.g.barbar_auto_setup = false end,
+        opts = {
+            -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+            -- animation = true,
+            -- insert_at_start = true,
+            -- …etc.
+        },
+        version = '^1.0.0', -- optional: only update when a new 1.x version is released
     },
     {
-      "lvimuser/lsp-inlayhints.nvim",
-      config = function()
-        require("lsp-inlayhints").setup()
-      end
+        "lvimuser/lsp-inlayhints.nvim",
+        config = function()
+            require("lsp-inlayhints").setup()
+        end
     },
     {
         "rachartier/tiny-code-action.nvim",
         dependencies = {
-            {"nvim-lua/plenary.nvim"},
-            {"nvim-telescope/telescope.nvim"},
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope.nvim" },
         },
         event = "LspAttach",
         config = function()
@@ -152,10 +153,20 @@ require("lazy").setup({
     },
     {
         "MysticalDevil/inlay-hints.nvim",
-           event = "LspAttach",
-           dependencies = { "neovim/nvim-lspconfig" },
-           config = function()
-               require("inlay-hints").setup()
-           end
+        event = "LspAttach",
+        dependencies = { "neovim/nvim-lspconfig" },
+        config = function()
+            require("inlay-hints").setup()
+        end
+    },
+    {
+        "scottmckendry/cyberdream.nvim",
+        lazy = false,
+        priority = 1000,
+    },
+    {
+      'mrcjkb/rustaceanvim',
+      version = '^5', -- Recommended
+      lazy = false, -- This plugin is already lazy
     }
 })

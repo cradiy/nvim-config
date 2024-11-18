@@ -7,7 +7,6 @@ vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
     -- 如果没有内容，直接返回
     return
   end
-
   config = config or {}
   config.focusable = true
   config.border = "rounded"
