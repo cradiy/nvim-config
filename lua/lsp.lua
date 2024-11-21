@@ -10,7 +10,7 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
     -- A list of servers to automatically install if they're not already installed
-    ensure_installed = { 'pylsp', 'lua_ls', 'rust_analyzer' },
+    ensure_installed = { 'pylsp', 'lua_ls', 'rust_analyzer', "ts_ls", "html"},
 })
 
 
@@ -61,5 +61,25 @@ end
 -- 1. use `:Mason` to install corresponding LSP
 -- 2. add configuration below
 lspconfig.pylsp.setup({
-	on_attach = on_attach,
 })
+lspconfig.ts_ls.setup({
+})
+lspconfig.html.setup({
+})
+lspconfig.lua_ls.setup({
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                globals = {'vim'},  -- 告诉 LSP vim 是全局变量
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),  -- 提供 Neovim 库
+            },
+        },
+    },
+})
+-- lspconfig.css_lsp.setup({
+    -- })

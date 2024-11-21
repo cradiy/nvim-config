@@ -53,7 +53,14 @@ require("lazy").setup({
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function ()
+            require('telescope').setup({
+                defaults = {
+                    file_ignore_patterns = {"target", ".git", "node_modules"}
+                }
+            })
+        end
     },
     {
         "norcalli/nvim-colorizer.lua",
@@ -98,17 +105,12 @@ require("lazy").setup({
         'saecki/crates.nvim',
         tag = 'stable',
         config = function()
-            require('crates').setup()
+            require('crates').setup({})
         end,
     },
     {
         "nvim-treesitter/nvim-treesitter"
     },
-    -- {
-    --     'mrcjkb/rustaceanvim',
-    --     version = '^5', -- Recommended
-    --     lazy = false,   -- This plugin is already lazy
-    -- },
     {
         'linrongbin16/lsp-progress.nvim',
         config = function()
@@ -168,5 +170,34 @@ require("lazy").setup({
       'mrcjkb/rustaceanvim',
       version = '^5', -- Recommended
       lazy = false, -- This plugin is already lazy
+    },
+    {
+        "github/copilot.vim"
+    },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        branch = "canary",
+        dependencies = {
+            { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+            { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+        },
+        build = "make tiktoken", -- Only on MacOS or Linux
+        opts = {
+            window = {
+                layout = 'float',
+                relative = 'cursor',
+                width = 1,
+                height = 0.4,
+                row = 1
+            }
+        },
+        -- See Commands section for default commands if you want to lazy load on them
+    },
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        opts = {},
     }
 })
