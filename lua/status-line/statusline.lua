@@ -7,6 +7,9 @@ require('lualine').setup {
             end
         },
     },
+    options = {
+        theme = "auto"
+    }
 }
 
 vim.api.nvim_create_augroup("lualine_augroup", { clear = true })

@@ -42,6 +42,7 @@ vim.keymap.set('n', '<A-r>', ':NvimTreeRefresh<CR>', opts)
 
 -- local builtin = require('telescope')
 vim.keymap.set('n', '<leader>f', ":Telescope find_files<CR>", opts)
+vim.keymap.set('n', '<leader>lg', ":Telescope live_grep<CR>", opts)
 -- vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 -- vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
@@ -52,8 +53,8 @@ vim.keymap.set("n", "<C-.>", function()
 end, { noremap = true, silent = true })
 map('n', '<leader>a', ':lua vim.lsp.buf.hover()<CR>', opts)
 map('n', 'rn', ':lua vim.lsp.buf.rename()<CR>', opts)
-map('n', '<leader>r', ':lua vim.lsp.buf.references()<CR>', opts)
-map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+map('n', '<leader>rr', ':lua vim.lsp.buf.references()<CR>', opts)
+map('n', '<leader>d', ':lua vim.lsp.buf.definition()<CR>', opts)
 
 map('n', '<leader>j', '<cmd>Telescope jumplist<CR>', opts)
 -- map('n', '<leader>r', '<cmd>lua ShowReferencesInFloatingWindow()<CR>', { noremap = true, silent = true })
@@ -114,3 +115,4 @@ map('n', '<S-Down>', '', opts)
 -- 在 Neovim 中定义自定义窗口导航快捷键
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>w', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-q>', '<C-w>q', { noremap = true, silent = true })
+

@@ -36,7 +36,7 @@ end
 
 local luasnip = require("luasnip")
 local cmp = require("cmp")
-
+local lspkind = require("lspkind")
 cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -86,17 +86,23 @@ cmp.setup({
       -- abbr: abbreviation of "word"; when not empty it is used in the menu instead of "word"
       -- menu: extra text for the popup menu, displayed after "word" or "abbr"
       fields = { 'abbr', 'menu' },
-
       -- customize the appearance of the completion menu
-      format = function(entry, vim_item)
+      format = lspkind.cmp_format({
+        mode = "symbol",
+        ellipsis_chat = "...",
+        show_labelDetails = true,
+        before = function(entry, vim_item)
           vim_item.menu = ({
-              nvim_lsp = '[Lsp]',
-              luasnip = '[Luasnip]',
-              buffer = '[File]',
-              path = '[Path]',
+            nvim_lsp = '[Lsp]',
+            luasnip = '[Luasnip]',
+            buffer = '[File]',
+            path = '[Path]',
           })[entry.source.name]
           return vim_item
-      end,
+        end,
+      })
+
+
   },
 
   -- Set source precedence
