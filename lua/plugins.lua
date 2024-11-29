@@ -276,5 +276,11 @@ require("lazy").setup({
         config = function()
             require("nvim-ts-autotag").setup()
         end,
+    },
+    {
+      "folke/tokyonight.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {},
     }
   })

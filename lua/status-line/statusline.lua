@@ -1,15 +1,20 @@
 require('lualine').setup {
-    sections = {
-        lualine_c = {
-            function()
-                -- invoke `progress` here.
-                return require('lsp-progress').progress()
-            end
-        },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {
+      "%{expand('%:~:.')}",
     },
-    options = {
-        theme = "auto"
-    }
+    lualine_x = {
+      'fileformat',
+      "filetype",
+    },
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  options = {
+    theme = "tokyonight"
+  }
 }
 
 vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
