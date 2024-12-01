@@ -1,5 +1,5 @@
 -- setup() is also available as an alias
-require('lspkind').setup({
+require('lspkind').init({
     -- DEPRECATED (use mode instead): enables text annotations
     --
     -- default: true

@@ -1,5 +1,4 @@
 
-local lsp_util = vim.lsp.util
 
 
 vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
@@ -34,10 +33,22 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local luasnip = require("luasnip")
+-- local luasnip = require("luasnip")
+--
+--
+local function truncate_string(content)
+  if content == nil then
+    return content
+  end
+  if string.len(content) > 25 then
+    return string.sub(content,1, 25) .. "..."
+  else
+    return content
+  end
+end
 local cmp = require("cmp")
 local lspkind = require("lspkind")
-cmp.setup({
+local cmp_opts = {
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -85,19 +96,14 @@ cmp.setup({
       -- kind: single letter indicating the type of completion
       -- abbr: abbreviation of "word"; when not empty it is used in the menu instead of "word"
       -- menu: extra text for the popup menu, displayed after "word" or "abbr"
-      fields = { 'abbr', 'menu' },
+      fields = { "kind", 'abbr', 'menu' },
       -- customize the appearance of the completion menu
       format = lspkind.cmp_format({
         mode = "symbol",
         ellipsis_chat = "...",
         show_labelDetails = true,
-        before = function(entry, vim_item)
-          vim_item.menu = ({
-            nvim_lsp = '[Lsp]',
-            luasnip = '[Luasnip]',
-            buffer = '[File]',
-            path = '[Path]',
-          })[entry.source.name]
+        before = function(_, vim_item)
+          vim_item.menu = truncate_string(vim_item.menu)
           return vim_item
         end,
       })
@@ -117,11 +123,14 @@ cmp.setup({
       border = 'rounded',   -- 边框样式
       scrollable = true,    -- 启用滚动
       max_height = 20,      -- 最大高度
+      max_width = 50,      -- 最大宽度
     },
     documentation = {
       border = 'rounded',   -- 边框样式
       scrollable = true,    -- 启用滚动
       max_height = 20,      -- 最大高度
+      max_width = 50,      -- 最大宽度
     }
   }
-})
+}
+cmp.setup(cmp_opts)

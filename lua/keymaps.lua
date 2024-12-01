@@ -54,15 +54,15 @@ vim.keymap.set("n", "<C-.>", function()
 end, { noremap = true, silent = true })
 map('n', '<leader>a', ':lua vim.lsp.buf.hover()<CR>', opts)
 map('n', 'rn', ':lua vim.lsp.buf.rename()<CR>', opts)
-map('n', '<leader>rr', ':lua vim.lsp.buf.references()<CR>', opts)
-map('n', '<leader>d', ':lua vim.lsp.buf.definition()<CR>', opts)
 
 map('n', '<leader>j', '<cmd>Telescope jumplist<CR>', opts)
--- map('n', '<leader>r', '<cmd>lua ShowReferencesInFloatingWindow()<CR>', { noremap = true, silent = true })
 
 
 
-map('n', '<leader>i', ':lua vim.lsp.buf.implementation()<CR>', opts)
+map('n', 'gd', ":lua require'telescope.builtin'.lsp_definitions({jump_type='vsplit'})<CR>", opts)
+map('n', 'gi', ":lua require'telescope.builtin'.lsp_implementations({jump_type='vsplit'})<CR>", opts)
+map('n', 'gr', ":lua require'telescope.builtin'.lsp_references({jump_type='vsplit'})<CR>", opts)
+
 
 -- Move to previous/next
 map('n', '<C-;>', '<Cmd>BufferPrevious<CR>', opts)

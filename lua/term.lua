@@ -15,7 +15,7 @@ function GituiToggle()
   gitui:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<leader>git", "<cmd>lua GituiToggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua GituiToggle()<CR>", {noremap = true, silent = true})
 
 
 require("toggleterm").setup{
