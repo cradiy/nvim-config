@@ -40,6 +40,7 @@ vim.keymap.set('n', '<A-r>', ':NvimTreeRefresh<CR>', opts)
 
 -- vim.keymap.set('n', '<A-.>', ':NvimTreeFindFile<CR>', opts)
 
+
 -- local builtin = require('telescope')
 vim.keymap.set('n', '<leader>f', ":Telescope find_files<CR>", opts)
 vim.keymap.set('n', '<leader>lg', ":Telescope live_grep<CR>", opts)
