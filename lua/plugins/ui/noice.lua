@@ -3,6 +3,14 @@ return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
 	opts = {
+		lsp = {
+			hover = {
+				enabled = true,
+			},
+			signature = {
+				enabled = false,
+			},
+		},
 		routes = {
 			{
 				filter = {
@@ -14,6 +22,27 @@ return {
 					},
 				},
 				view = "mini",
+			},
+			{
+				filter = {
+					event = "notify",
+					any = {
+						{ find = ".*information.*" },
+					},
+				},
+				opts = { skip = true },
+			},
+			{
+				filter = {
+					event = "notify",
+					kind = "error",
+					any = {
+
+						{ find = ".*-32603.*" },
+						{ find = ".*-32802.*" },
+					},
+				},
+				opts = { skip = true },
 			},
 		},
 		presets = {

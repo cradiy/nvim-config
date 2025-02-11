@@ -1,45 +1,3 @@
-local kinds = {
-	Array = " ",
-	Boolean = "󰨙 ",
-	Class = " ",
-	Codeium = "󰘦 ",
-	Color = " ",
-	Control = " ",
-	Collapsed = " ",
-	Constant = "󰏿 ",
-	Constructor = " ",
-	Copilot = " ",
-	Enum = " ",
-	EnumMember = " ",
-	Event = " ",
-	Field = " ",
-	File = " ",
-	Folder = " ",
-	Function = "󰊕 ",
-	Interface = " ",
-	Key = " ",
-	Keyword = " ",
-	Method = "󰊕 ",
-	Module = " ",
-	Namespace = "󰦮 ",
-	Null = " ",
-	Number = "󰎠 ",
-	Object = " ",
-	Operator = " ",
-	Package = " ",
-	Property = " ",
-	Reference = " ",
-	Snippet = "󱄽 ",
-	String = " ",
-	Struct = "󰆼 ",
-	Supermaven = " ",
-	TabNine = "󰏚 ",
-	Text = " ",
-	TypeParameter = " ",
-	Unit = " ",
-	Value = " ",
-	Variable = "󰀫 ",
-}
 return {
 	{
 		"saghen/blink.cmp",
@@ -107,19 +65,24 @@ return {
 
 				kind_icons = vim.tbl_extend("keep", {
 					Color = "██", -- Use block instead of icon for color items to make swatches more usable
-				}, kinds),
+				}, CradiyVim.icons),
 			},
 
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+				default = { "lsp", "path", "snippets", "buffer", "lazydev", "markdown" },
 				providers = {
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 100,
+					},
+					markdown = {
+						name = "RenderMarkdown",
+						module = "render-markdown.integ.blink",
+						fallbacks = { "lsp" },
 					},
 				},
 			},

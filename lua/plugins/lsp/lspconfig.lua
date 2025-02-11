@@ -69,11 +69,6 @@ return {
 			---@type lspconfig.options
 			servers = {
 				lua_ls = {
-					-- mason = false, -- set to false if you don't want this server to be installed with mason
-					-- Use this to add any additional keymaps
-					-- for specific lsp servers
-					-- ---@type LazyKeysSpec[]
-					-- keys = {},
 					settings = {
 						Lua = {
 							workspace = {
@@ -100,6 +95,8 @@ return {
 					},
 				},
 				html = {},
+				taplo = {},
+				wgsl_analyzer = {},
 				jsonls = {
 					-- lazy-load schemastore when needed
 					on_new_config = function(new_config)
@@ -116,7 +113,6 @@ return {
 					},
 				},
 				ts_ls = {
-
 					-- capabilities = require("cmp_nvim_lsp").default_capabilities(),
 					settings = {
 						typescript = {
@@ -144,6 +140,13 @@ return {
 							},
 						},
 					},
+				},
+				cssls = {
+					on_attach = function(client)
+						vim.opt.tabstop = 2 -- number of visual spaces per TAB
+						vim.opt.softtabstop = 2 -- number of spacesin tab when editing
+						vim.opt.shiftwidth = 2 -- insert 4 spaces on a tab
+					end,
 				},
 			},
 			-- you can do any additional lsp server setup here

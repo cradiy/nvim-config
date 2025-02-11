@@ -31,8 +31,10 @@ return {
 		return {
 			"default-title",
 			fzf_colors = true,
+
 			fzf_opts = {
 				["--no-scrollbar"] = true,
+				["--walker-skip='target,build,node_modules'"] = true,
 			},
 			defaults = {
 				-- formatter = "path.filename_first",
