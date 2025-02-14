@@ -96,6 +96,7 @@ return {
 				},
 				html = {},
 				taplo = {},
+				bashls = {},
 				wgsl_analyzer = {},
 				jsonls = {
 					-- lazy-load schemastore when needed

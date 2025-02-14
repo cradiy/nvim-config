@@ -2,7 +2,7 @@ return {
 	require("plugins.ui.lualine"),
 	require("plugins.ui.theme"),
 	require("plugins.ui.snack"),
-	require("plugins.ui.buffer"),
+	require("plugins.ui.bufferline"),
 	require("plugins.ui.noice"),
 	require("plugins.ui.which-key"),
 	{
