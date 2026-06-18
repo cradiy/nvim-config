@@ -7,6 +7,30 @@ return {
     bigfile = { enabled = true },
     dashboard = { enabled = true },
     explorer = { enabled = true },
+    image = {
+      enabled = true,
+      resolve = function(_, src)
+        local owner, repo, branch, path = src:match("^https://github%.com/([^/]+)/([^/]+)/blob/([^/]+)/(.*)$")
+        if owner and repo and branch and path then
+          return ("https://raw.githubusercontent.com/%s/%s/%s/%s"):format(owner, repo, branch, path)
+        end
+
+        owner, repo, branch, path = src:match("^https://github%.com/([^/]+)/([^/]+)/raw/([^/]+)/(.*)$")
+        if owner and repo and branch and path then
+          return ("https://raw.githubusercontent.com/%s/%s/%s/%s"):format(owner, repo, branch, path)
+        end
+      end,
+      doc = {
+        enabled = true,
+        inline = true,
+        float = true,
+        max_width = 80,
+        max_height = 40,
+        conceal = function(_, type)
+          return type == "math"
+        end,
+      },
+    },
     indent = { enabled = true },
     input = { enabled = true },
     notifier = {
