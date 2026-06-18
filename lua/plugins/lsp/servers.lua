@@ -108,13 +108,13 @@ return {
 				callback = function(args)
 					local opts = { buffer = args.buf, silent = true }
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "LSP Hover" }))
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Goto Definition" }))
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Goto Declaration" }))
-					vim.keymap.set("n", "gI", vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "Goto Implementation" }))
-					vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "Goto Type Definition" }))
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "References" }))
+					vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", vim.tbl_extend("force", opts, { desc = "Goto Definition" }))
+					vim.keymap.set("n", "gD", "<cmd>FzfLua lsp_declarations<cr>", vim.tbl_extend("force", opts, { desc = "Goto Declaration" }))
+					vim.keymap.set("n", "gI", "<cmd>FzfLua lsp_implementations<cr>", vim.tbl_extend("force", opts, { desc = "Goto Implementation" }))
+					vim.keymap.set("n", "gy", "<cmd>FzfLua lsp_typedefs<cr>", vim.tbl_extend("force", opts, { desc = "Goto Type Definition" }))
+					vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references<cr>", vim.tbl_extend("force", opts, { desc = "References" }))
 					vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP Rename" }))
-					vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code Action" }))
+					vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>", vim.tbl_extend("force", opts, { desc = "Code Action" }))
 				end,
 			})
 		end,

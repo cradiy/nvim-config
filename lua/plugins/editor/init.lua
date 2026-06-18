@@ -1,5 +1,5 @@
 return {
-  { import = "plugins.editor.move" },
+  { import = "plugins.editor.mini" },
   { import = "plugins.editor.search" },
   { import = "plugins.editor.yazi" },
   { import = "plugins.editor.snack" },
@@ -12,4 +12,5 @@ return {
   { import = "plugins.editor.auto" },
   { import = "plugins.editor.flash" },
   { import = "plugins.editor.comment" },
+  { import = "plugins.editor.markdown" },
 }

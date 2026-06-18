@@ -30,6 +30,26 @@ return {
 			end
 		end
 
+		local function code_action_filter(action)
+			if not vim.tbl_contains({
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+			}, vim.bo.filetype) then
+				return true
+			end
+
+			local title = (action.title or ""):lower()
+			local kind = action.kind or ""
+			local is_export_refactor = kind:match("^refactor")
+				and title:find("default", 1, true)
+				and title:find("named", 1, true)
+				and title:find("export", 1, true)
+
+			return not is_export_refactor
+		end
+
 		return {
 			"default-title",
 			fzf_colors = true,
@@ -111,6 +131,7 @@ return {
 				},
 				code_actions = {
 					previewer = vim.fn.executable("delta") == 1 and "codeaction_native" or nil,
+					filter = code_action_filter,
 				},
 			},
 		}
