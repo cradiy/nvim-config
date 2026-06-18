@@ -1,0 +1,15 @@
+return {
+  { import = "plugins.editor.move" },
+  { import = "plugins.editor.search" },
+  { import = "plugins.editor.yazi" },
+  { import = "plugins.editor.snack" },
+  { import = "plugins.editor.noice" },
+  { import = "plugins.editor.trouble" },
+  { import = "plugins.editor.bufferline" },
+  { import = "plugins.editor.git" },
+  { import = "plugins.editor.format" },
+  { import = "plugins.editor.todo" },
+  { import = "plugins.editor.auto" },
+  { import = "plugins.editor.flash" },
+  { import = "plugins.editor.comment" },
+}
